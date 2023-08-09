@@ -1,6 +1,6 @@
 # Neueda-Credit
 
-Credit card management system 
+Credit card management system
 
 ## Folder structure
 
