@@ -150,6 +150,10 @@ public class transactions {
 
     //Constructors
 
+
+    public transactions() {
+    }
+
     public transactions(int customer_id) {
         this.customerID = customer_id;
     }

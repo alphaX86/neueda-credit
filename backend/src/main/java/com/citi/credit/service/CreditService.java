@@ -42,6 +42,10 @@ public class CreditService implements ICreditService{
         return transactionRepo.findBycustomerID(_customerID);
     }
 
+    @Override
+    public List<transactions> getAllTransactions(){
+        return transactionRepo.findAll();
+    }
 //    @Override
 //    public List<transactions> transactionByName(String _first,String Last) throws RecordNotFoundException{
 //        return null;

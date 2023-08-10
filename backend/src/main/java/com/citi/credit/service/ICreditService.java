@@ -18,6 +18,6 @@ public interface ICreditService {
 
     //public List<transactions> transactionByName(String _first,String _last) throws RecordNotFoundException;
 
-
+    public List<transactions> getAllTransactions();
 
 }

@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface ITransactionData extends MongoRepository<transactions,String> {
+public interface ITransactionData extends MongoRepository<transactions,List<transactions>> {
 
     @Query
     List<transactions> findBycustomerID(int _customerID);

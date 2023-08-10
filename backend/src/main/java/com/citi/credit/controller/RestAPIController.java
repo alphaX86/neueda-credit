@@ -1,4 +1,4 @@
-package com.citi.credit;
+package com.citi.credit.controller;
 
 
 import com.citi.credit.customExceptions.RecordNotFoundException;
@@ -28,6 +28,10 @@ public class RestAPIController {
 
         return creditService.getAllCustomers();
 
+    }
+    @GetMapping("/transactions")
+    public List<transactions> getAllTransactions(){
+        return creditService.getAllTransactions();
     }
 
     @GetMapping("/Customer/Transaction")
