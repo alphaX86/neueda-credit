@@ -25,12 +25,21 @@ public class CreditService implements ICreditService{
     }
 
     @Override
+    public customers getCustomerByID(int _customerID) throws RecordNotFoundException{
+        customers customer = customerRepo.findBycustomerID(_customerID);
+        if (customer == null){
+            throw new RecordNotFoundException("Customer with customer ID"+_customerID+"doesnot exist");
+        }
+        return customer;
+    }
+
+    @Override
     public List<transactions> transactionByCustID(int _customerID) throws RecordNotFoundException {
-        customers _customers  = customerRepo.findByCustomerID(_customerID);
+        customers _customers  = customerRepo.findBycustomerID(_customerID);
         if(_customers==null){
             throw new RecordNotFoundException("Customer with customer ID"+_customerID+"doesnot exist");
         }
-        return transactionRepo.findByCustomerID(_customerID);
+        return transactionRepo.findBycustomerID(_customerID);
     }
 
 //    @Override

@@ -10,6 +10,6 @@ import java.util.List;
 public interface ICustomerData extends MongoRepository<customers,String> {
 
     @Query
-    customers findByCustomerID(int _customerID);
+    customers findBycustomerID(int _customerID);
 
 }

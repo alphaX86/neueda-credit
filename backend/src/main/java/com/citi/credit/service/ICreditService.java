@@ -12,6 +12,8 @@ public interface ICreditService {
 
     public List<customers> getAllCustomers();
 
+    public customers getCustomerByID(int _customerID) throws RecordNotFoundException;
+
     public List<transactions> transactionByCustID(int _customerID) throws RecordNotFoundException;
 
     //public List<transactions> transactionByName(String _first,String _last) throws RecordNotFoundException;

@@ -12,7 +12,7 @@ public class transactions {
     private String trans_date_trans_time;
     private double amt;
     private int trans_num;
-    private int customer_id;
+    private int customerID;
     private String city;
     private String state;
     private int city_population;
@@ -59,11 +59,11 @@ public class transactions {
     }
 
     public int getCustomer_id() {
-        return customer_id;
+        return customerID;
     }
 
     public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+        this.customerID = customer_id;
     }
 
     public String getCity() {
@@ -149,12 +149,12 @@ public class transactions {
     //Constructors
 
     public transactions(int customer_id) {
-        this.customer_id = customer_id;
+        this.customerID = customer_id;
     }
 
     public transactions(int trans_num, int customer_id, String first, String last, String dob) {
         this.trans_num = trans_num;
-        this.customer_id = customer_id;
+        this.customerID = customer_id;
         this.first = first;
         this.last = last;
         this.dob = dob;
@@ -165,7 +165,7 @@ public class transactions {
         this.trans_date_trans_time = trans_date_trans_time;
         this.amt = amt;
         this.trans_num = trans_num;
-        this.customer_id = customer_id;
+        this.customerID = customer_id;
         this.city = city;
         this.state = state;
         this.city_population = city_population;
@@ -187,7 +187,7 @@ public class transactions {
                 ", trans_date_trans_time='" + trans_date_trans_time + '\'' +
                 ", amt=" + amt +
                 ", trans_num=" + trans_num +
-                ", customer_id=" + customer_id +
+                ", customer_id=" + customerID +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", city_population=" + city_population +

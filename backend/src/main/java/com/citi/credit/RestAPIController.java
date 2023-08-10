@@ -40,4 +40,14 @@ public class RestAPIController {
             return ResponseEntity.noContent().build();
         }
     }
+
+    @GetMapping("/Customer")
+    public ResponseEntity<Object> getCustomerByID(int _customerID) throws RecordNotFoundException {
+        try {customers customer = this.creditService.getCustomerByID(_customerID);
+            return ResponseEntity.status(HttpStatus.FOUND).body(customer);
+        } catch (RecordNotFoundException e) {
+            // throw new RuntimeException(e);
+            return ResponseEntity.noContent().build();
+        }
+    }
 }
