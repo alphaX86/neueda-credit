@@ -3,6 +3,7 @@ package com.citi.credit.data;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document
 public class transactions {
@@ -12,6 +13,7 @@ public class transactions {
     private String trans_date_trans_time;
     private double amt;
     private int trans_num;
+    @Field("customer_id")
     private int customerID;
     private String city;
     private String state;
