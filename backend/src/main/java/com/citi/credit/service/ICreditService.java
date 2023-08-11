@@ -20,7 +20,7 @@ public interface ICreditService {
 
     public List<transactions> getAllTransactions();
 
-    public List<transactions> getAllTransactionsByGender(String _gender) throws RecordNotFoundException;
+    public List<transactions> getAllTransactionsByGender(String gender) throws RecordNotFoundException;
 
     public List<transactions> getAllTransactionsByCategory(String _category) throws RecordNotFoundException;
 
@@ -30,7 +30,7 @@ public interface ICreditService {
 
     public List<transactions> getAllTransactionsByCity(String _city) throws RecordNotFoundException;
 
-    public List<transactions> getAllTransactionsByPopulation(int _populationFrom, int _populationTo) throws RecordNotFoundException;
-
     public List<transactions> getAllTransactionsBySpending(int _spendingLimitFrom, int _spendingLimitTo) throws RecordNotFoundException;
+
+    public List<transactions> getAllTransactionsByJob(String _profession) throws RecordNotFoundException;
 }

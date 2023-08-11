@@ -37,7 +37,9 @@ public class transactions {
     @Field("gender")
     private String gender;
     
+    @Field("Job")
     private String job;
+    
     private String dob;
 
     //Getters and Setters

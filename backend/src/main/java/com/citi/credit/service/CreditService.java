@@ -52,10 +52,10 @@ public class CreditService implements ICreditService{
 //    }
 
     @Override
-    public List<transactions> getAllTransactionsByGender(String _gender) throws RecordNotFoundException {
-        List<transactions> result = transactionRepo.findBygender(_gender);
-        if (result.size() == 0) {
-            throw new RecordNotFoundException("Gender " + _gender + " does not exist");
+    public List<transactions> getAllTransactionsByGender(String gender) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findBygender(gender);
+        if (result == null) {
+            throw new RecordNotFoundException("Gender " + gender + " does not exist");
         }
         return result;
     }
@@ -97,15 +97,6 @@ public class CreditService implements ICreditService{
     }
 
     @Override
-    public List<transactions> getAllTransactionsByPopulation(int _populationFrom, int _populationTo) throws RecordNotFoundException {
-        List<transactions> result = transactionRepo.findByPopulation(_populationFrom, _populationTo);
-        if (result.size() == 0) {
-            throw new RecordNotFoundException("Given range does not exist");
-        }
-        return result;
-    }
-
-    @Override
     public List<transactions> getAllTransactionsBySpending(int _spendingLimitFrom, int _spendingLimitTo) throws RecordNotFoundException {
         List<transactions> result = transactionRepo.findBySpendingLimit(_spendingLimitFrom, _spendingLimitTo);
         if (result.size() == 0) {
@@ -113,4 +104,13 @@ public class CreditService implements ICreditService{
         }
         return result;
     }
+
+    @Override
+    public List<transactions> getAllTransactionsByJob(String _job) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findByJob(_job);
+        if (result.size() == 0) {
+            throw new RecordNotFoundException("Profession " + _job + " does not exist");
+        }
+        return result;
+    }    
 }

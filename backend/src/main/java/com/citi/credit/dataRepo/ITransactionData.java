@@ -2,31 +2,34 @@ package com.citi.credit.dataRepo;
 
 import com.citi.credit.data.transactions;
 
-import org.springdoc.core.converters.models.Pageable;
-import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface ITransactionData extends MongoRepository<transactions,List<transactions>> {
+public interface ITransactionData extends MongoRepository<transactions,String> {
 
     @Query("{customerID:?0}")
     List<transactions> findBycustomerID(int _customerID);
 
+    @Query
     List<transactions> findBygender(String _gender);
 
+    @Query
     List<transactions> findBycategory(String _category);
 
+    @Query
     List<transactions> findBymerchant(String _merchant);
 
+    @Query
     List<transactions> findBycity (String _city);
 
+    @Query
     List<transactions> findBystate (String _state);
-
-    @Query("{city_population: {$gte: ?0, $lte: ?1}}")
-    List<transactions> findByPopulation (int _populationFrom, int _populationTo);
 
     @Query("{amt:{ $gte: ?0, $lte: ?1}}")
     List<transactions> findBySpendingLimit (int _spendingLimitFrom, int _spendingLimitTo);
+
+    @Query
+    List<transactions> findByJob (String _job);
 }
