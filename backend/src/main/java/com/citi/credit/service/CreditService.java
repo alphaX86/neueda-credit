@@ -27,6 +27,11 @@ public class CreditService implements ICreditService{
     }
 
     @Override
+    public List<transactions> getAllTransactions() {
+        return transactionRepo.findAll();
+    }
+
+    @Override
     public customers getCustomerByID(int _customerID) throws RecordNotFoundException{
         customers customer = customerRepo.findBycustomerID(_customerID);
         if (customer == null){

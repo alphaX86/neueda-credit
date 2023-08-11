@@ -119,6 +119,8 @@ public class RestAPIController {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(transactions);
+        }
+    }
 
     // POST method
     @PostMapping("/new_Customer")
