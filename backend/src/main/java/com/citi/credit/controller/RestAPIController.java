@@ -8,11 +8,7 @@ import com.citi.credit.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -123,6 +119,25 @@ public class RestAPIController {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(transactions);
+
+    // POST method
+    @PostMapping("/new_Customer")
+    public ResponseEntity<Object> addCusotomer(String _first, String _last, String _dob, String _gender,String _job) throws RecordNotFoundException{
+        try {
+            customers _customer = this.creditService.addCustomer(_first,_last,_dob,_job,_gender);
+            return ResponseEntity.status(HttpStatus.CREATED).body(_customer);
+        } catch (RecordNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteCustomer(int _customerID) throws RecordNotFoundException{
+        try{
+            customers _customer = this.creditService.deleteCustomer(_customerID);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(_customer);
+        }catch (RecordNotFoundException e){
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
         }
     }
 }

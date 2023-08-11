@@ -11,7 +11,7 @@ public class transactions {
     @Id
     private ObjectId _id;
     private String trans_date_trans_time;
-    private double amt;
+    private Double amt;
     private int trans_num;
 
     @Field("customer_id")

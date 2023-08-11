@@ -17,8 +17,14 @@ public interface ICreditService {
     public List<transactions> transactionByCustID(int _customerID) throws RecordNotFoundException;
 
     //public List<transactions> transactionByName(String _first,String _last) throws RecordNotFoundException;
+    public List<Double> transactionBygender(String _gender) ;
 
-    public List<transactions> getAllTransactions();
+
+    public customers addCustomer(String _first, String _last, String _dob, String _gender,String job) throws RecordNotFoundException;
+
+
+    //delete
+    public customers deleteCustomer(int _customerID) throws RecordNotFoundException;
 
     public List<transactions> getAllTransactionsByGender(String gender) throws RecordNotFoundException;
 
