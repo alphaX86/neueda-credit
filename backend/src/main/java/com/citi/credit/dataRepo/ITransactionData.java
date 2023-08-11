@@ -11,4 +11,7 @@ public interface ITransactionData extends MongoRepository<transactions,List<tran
     @Query
     List<transactions> findBycustomerID(int _customerID);
 
+    @Query
+    List<transactions> findBygender(String _gender);
+
 }

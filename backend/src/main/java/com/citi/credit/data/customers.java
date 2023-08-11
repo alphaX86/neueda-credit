@@ -19,6 +19,8 @@ public class customers {
     @Field("customer_id")
     private int customerID;
 
+
+
     //Getters and Setters
 
 
@@ -96,6 +98,15 @@ public class customers {
 
     public customers(int customer_id) {
         this.customerID = customer_id;
+    }
+
+    public customers(String first, String last, String gender, String job, String dob,int customerID) {
+        this.first = first;
+        this.last = last;
+        this.gender = gender;
+        this.job = job;
+        this.dob = dob;
+        this.customerID = customerID;
     }
 
     public customers(ObjectId _id, String first, String last, String gender, String job, String dob, int customer_id) {
