@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="KubernetesSettings">
+    <option name="contextName" value="gke_ark-7-384315_us-central1-a_arno" />
+  </component>
+</project>

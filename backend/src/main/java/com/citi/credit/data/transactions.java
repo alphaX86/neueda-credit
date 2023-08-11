@@ -13,17 +13,33 @@ public class transactions {
     private String trans_date_trans_time;
     private Double amt;
     private int trans_num;
+
     @Field("customer_id")
     private int customerID;
+    
+    @Field("city")
     private String city;
+    
+    @Field("state")
     private String state;
+    
     private int city_population;
+    
+    @Field("merchant")
     private String merchant;
+    
+    @Field("category")
     private String category;
+    
     private String first;
     private String last;
+    
+    @Field("gender")
     private String gender;
+    
+    @Field("Job")
     private String job;
+    
     private String dob;
 
     //Getters and Setters
