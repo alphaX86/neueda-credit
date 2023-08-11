@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,7 @@ public class RestAPIController {
         return creditService.getAllTransactions();
     }
 
-    @GetMapping("/Customer/Transaction")
+    @GetMapping("/customer/transaction")
     public ResponseEntity<Object> transactionByCustID(int _customerID) throws RecordNotFoundException {
         try {
             List<transactions> list = this.creditService.transactionByCustID(_customerID);
@@ -45,13 +46,33 @@ public class RestAPIController {
         }
     }
 
-    @GetMapping("/Customer")
+    @GetMapping("/customer")
     public ResponseEntity<Object> getCustomerByID(int _customerID) throws RecordNotFoundException {
         try {customers customer = this.creditService.getCustomerByID(_customerID);
             return ResponseEntity.status(HttpStatus.FOUND).body(customer);
         } catch (RecordNotFoundException e) {
             // throw new RuntimeException(e);
             return ResponseEntity.noContent().build();
+        }
+    }
+
+    @GetMapping("/transactions/gender/{gender}")
+    public ResponseEntity<List<transactions>> getTransactionsByGender(@PathVariable String gender) throws RecordNotFoundException {
+        List<transactions> transactions = creditService.getAllTransactionsByGender(gender);
+        if (transactions.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(transactions);
+        }
+    }
+
+    @GetMapping("/transactions/city/{city}")
+    public ResponseEntity<List<transactions>> getTransactionsByCity(@PathVariable String city) throws RecordNotFoundException {
+        List<transactions> transactions = creditService.getAllTransactionsByCity(city);
+        if (transactions.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(transactions);
         }
     }
 }

@@ -50,4 +50,67 @@ public class CreditService implements ICreditService{
 //    public List<transactions> transactionByName(String _first,String Last) throws RecordNotFoundException{
 //        return null;
 //    }
+
+    @Override
+    public List<transactions> getAllTransactionsByGender(String _gender) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findBygender(_gender);
+        if (result.size() == 0) {
+            throw new RecordNotFoundException("Gender " + _gender + " does not exist");
+        }
+        return result;
+    }
+
+    @Override
+    public List<transactions> getAllTransactionsByMerchant(String _merchant) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findBymerchant(_merchant);
+        if (result.size() == 0) {
+            throw new RecordNotFoundException("Merchant " + _merchant + " does not exist");
+        }
+        return result;
+    }
+
+    @Override
+    public List<transactions> getAllTransactionsByCity(String _city) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findBycity(_city);
+        if (result.size() == 0) {
+            throw new RecordNotFoundException("City " + _city + " does not exist");
+        }
+        return result;
+    }
+
+    @Override
+    public List<transactions> getAllTransactionsByState(String _state) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findBystate(_state);
+        if (result.size() == 0) {
+            throw new RecordNotFoundException("State " + _state + " does not exist");
+        }
+        return result;
+    }
+
+    @Override
+    public List<transactions> getAllTransactionsByCategory(String _category) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findBycategory(_category);
+        if (result.size() == 0) {
+            throw new RecordNotFoundException("Category " + _category + " does not exist");
+        }
+        return result;
+    }
+
+    @Override
+    public List<transactions> getAllTransactionsByPopulation(int _populationFrom, int _populationTo) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findByPopulation(_populationFrom, _populationTo);
+        if (result.size() == 0) {
+            throw new RecordNotFoundException("Given range does not exist");
+        }
+        return result;
+    }
+
+    @Override
+    public List<transactions> getAllTransactionsBySpending(int _spendingLimitFrom, int _spendingLimitTo) throws RecordNotFoundException {
+        List<transactions> result = transactionRepo.findBySpendingLimit(_spendingLimitFrom, _spendingLimitTo);
+        if (result.size() == 0) {
+            throw new RecordNotFoundException("Spending limit range does not exist");
+        }
+        return result;
+    }
 }
