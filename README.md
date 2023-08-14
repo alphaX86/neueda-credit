@@ -6,7 +6,7 @@ Credit card management system
 
 The folder structure for the project is as follows:
 
-- [frontend](./frontend/)
+- [frontend](./ui/)
 - [backend](./backend/)
 
 ## Tech Stack
