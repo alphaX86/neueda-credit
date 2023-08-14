@@ -2,6 +2,7 @@ package com.citi.credit.controller;
 
 
 import com.citi.credit.customExceptions.RecordNotFoundException;
+import com.citi.credit.data.AnalysisResults;
 import com.citi.credit.data.customers;
 import com.citi.credit.data.transactions;
 import com.citi.credit.service.CreditService;
@@ -53,8 +54,8 @@ public class RestAPIController {
     }
 
     @GetMapping(value="/transactions/gender/{gender}")
-    public ResponseEntity<List<transactions>> getTransactionsByGender(@PathVariable String gender) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByGender(gender);
+    public ResponseEntity<List<AnalysisResults>> transactionByGender() throws RecordNotFoundException {
+        List<AnalysisResults> transactions = creditService.transactionByGender();
         if (transactions.size()==0) {
             return ResponseEntity.notFound().build();
         } else {

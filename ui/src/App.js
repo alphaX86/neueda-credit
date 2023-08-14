@@ -10,6 +10,8 @@ function App() {
   return (
     <div className="container">
       <Home />
+      <Navbar/>
+      <Exist/>
     </div>
   );
 }

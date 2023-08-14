@@ -1,6 +1,7 @@
 package com.citi.credit.service;
 
 import com.citi.credit.customExceptions.RecordNotFoundException;
+import com.citi.credit.data.AnalysisResults;
 import com.citi.credit.data.customers;
 import com.citi.credit.data.transactions;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,9 @@ public interface ICreditService {
     public List<transactions> transactionByCustID(int _customerID) throws RecordNotFoundException;
 
     //public List<transactions> transactionByName(String _first,String _last) throws RecordNotFoundException;
-    public List<Double> transactionBygender(String _gender) ;
+    public List<AnalysisResults> transactionByGender() ;
 
-    public List<transactions> getAllTransactionsByGender(String gender) throws RecordNotFoundException;
+   public List<transactions> getAllTransactionsByGender(String gender) throws RecordNotFoundException;
 
     public List<transactions> getAllTransactionsByCategory(String _category) throws RecordNotFoundException;
 
