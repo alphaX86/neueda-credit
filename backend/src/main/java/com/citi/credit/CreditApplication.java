@@ -9,7 +9,7 @@ public class CreditApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(CreditApplication.class, args);
-		System.out.println("App is running .....----");
+		System.out.println("Backend server is running...");
 	}
 
 }

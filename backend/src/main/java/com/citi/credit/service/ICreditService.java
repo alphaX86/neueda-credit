@@ -10,6 +10,13 @@ import java.util.List;
 
 public interface ICreditService {
 
+    // CREATE
+    public customers addCustomer(String _first, String _last, String _dob, String _gender,String job) throws RecordNotFoundException;
+
+    // UPDATE
+    // TBD
+
+    // RETRIEVE
     public List<customers> getAllCustomers();
 
     public List<transactions> getAllTransactions();
@@ -20,13 +27,6 @@ public interface ICreditService {
 
     //public List<transactions> transactionByName(String _first,String _last) throws RecordNotFoundException;
     public List<Double> transactionBygender(String _gender) ;
-
-
-    public customers addCustomer(String _first, String _last, String _dob, String _gender,String job) throws RecordNotFoundException;
-
-
-    //delete
-    public customers deleteCustomer(int _customerID) throws RecordNotFoundException;
 
     public List<transactions> getAllTransactionsByGender(String gender) throws RecordNotFoundException;
 
@@ -41,4 +41,7 @@ public interface ICreditService {
     public List<transactions> getAllTransactionsBySpending(int _spendingLimitFrom, int _spendingLimitTo) throws RecordNotFoundException;
 
     public List<transactions> getAllTransactionsByJob(String _profession) throws RecordNotFoundException;
+
+    // DELETE
+    public customers deleteCustomer(int _customerID) throws RecordNotFoundException;
 }
