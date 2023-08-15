@@ -1,15 +1,16 @@
-package com.citi.credit.data;
+package com.citi.credit.aggregates;
 
-public class AnalysisResults {
-    private String gender;
+public class stateAggregate {
+    private String state;
+
     private double totalAmount;
 
-    public String getGender() {
-        return gender;
+    public String getState() {
+        return state;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public double getTotalAmount() {

@@ -1,10 +1,11 @@
 package com.citi.credit.controller;
 
 
+import com.citi.credit.aggregates.*;
 import com.citi.credit.customExceptions.RecordNotFoundException;
-import com.citi.credit.data.AnalysisResults;
 import com.citi.credit.data.customers;
 import com.citi.credit.data.transactions;
+import com.citi.credit.service.AggregateService;
 import com.citi.credit.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,9 @@ public class RestAPIController {
 
     @Autowired
     private CreditService creditService;
+
+    @Autowired
+    private AggregateService aggregateService;
 
     @GetMapping(value="/allCustomers")
     public List<customers> getAllCustomers(){
@@ -54,8 +58,18 @@ public class RestAPIController {
     }
 
     @GetMapping(value="/transactions/gender/{gender}")
-    public ResponseEntity<List<AnalysisResults>> transactionByGender() throws RecordNotFoundException {
-        List<AnalysisResults> transactions = creditService.transactionByGender();
+    public ResponseEntity<List<genderAggeregate>> transactionByGender() throws RecordNotFoundException {
+        List<genderAggeregate> transactions = aggregateService.transactionByGender();
+        if (transactions.size()==0) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(transactions);
+        }
+    }
+
+    @GetMapping(value="/transactions/job/{job}")
+    public ResponseEntity<List<jobAggregate>> transactionByJob() throws RecordNotFoundException {
+        List<jobAggregate> transactions = aggregateService.transactionByJob();
         if (transactions.size()==0) {
             return ResponseEntity.notFound().build();
         } else {
@@ -64,19 +78,9 @@ public class RestAPIController {
     }
 
     @GetMapping(value="/transactions/city/{city}")
-    public ResponseEntity<List<transactions>> getTransactionsByCity(@PathVariable String city) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByCity(city);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
-
-    @GetMapping(value="/transactions/category/{category}")
-    public ResponseEntity<List<transactions>> getTransactionsByCategory(@PathVariable String category) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByCategory(category);
-        if (transactions.isEmpty()) {
+    public ResponseEntity<List<cityAggregate>> transactionByCity() throws RecordNotFoundException {
+        List<cityAggregate> transactions = aggregateService.transactionByCity();
+        if (transactions.size()==0) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(transactions);
@@ -84,9 +88,19 @@ public class RestAPIController {
     }
 
     @GetMapping(value="/transactions/state/{state}")
-    public ResponseEntity<List<transactions>> getTransactionsByState(@PathVariable String state) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByCity(state);
-        if (transactions.isEmpty()) {
+    public ResponseEntity<List<stateAggregate>> transactionByState() throws RecordNotFoundException {
+        List<stateAggregate> transactions = aggregateService.transactionByState();
+        if (transactions.size()==0) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(transactions);
+        }
+    }
+
+    @GetMapping(value="/transactions/category/{category}")
+    public ResponseEntity<List<categoryAggregate>> transactionByCategory() throws RecordNotFoundException {
+        List<categoryAggregate> transactions = aggregateService.transactionByCategory();
+        if (transactions.size()==0) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(transactions);
@@ -94,14 +108,55 @@ public class RestAPIController {
     }
 
     @GetMapping(value="/transactions/merchant/{merchant}")
-    public ResponseEntity<List<transactions>> getTransactionsByMerchant(@PathVariable String merchant) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByMerchant(merchant);
-        if (transactions.isEmpty()) {
+    public ResponseEntity<List<merchantAggregate>> transactionByMerchant() throws RecordNotFoundException {
+        List<merchantAggregate> transactions = aggregateService.transactionByMerchant();
+        if (transactions.size()==0) {
             return ResponseEntity.notFound().build();
         } else {
             return ResponseEntity.ok(transactions);
         }
     }
+
+//
+//    @GetMapping(value="/transactions/city/{city}")
+//    public ResponseEntity<List<transactions>> getTransactionsByCity(@PathVariable String city) throws RecordNotFoundException {
+//        List<transactions> transactions = creditService.getAllTransactionsByCity(city);
+//        if (transactions.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(transactions);
+//        }
+//    }
+//
+//    @GetMapping(value="/transactions/category/{category}")
+//    public ResponseEntity<List<transactions>> getTransactionsByCategory(@PathVariable String category) throws RecordNotFoundException {
+//        List<transactions> transactions = creditService.getAllTransactionsByCategory(category);
+//        if (transactions.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(transactions);
+//        }
+//    }
+//
+//    @GetMapping(value="/transactions/state/{state}")
+//    public ResponseEntity<List<transactions>> getTransactionsByState(@PathVariable String state) throws RecordNotFoundException {
+//        List<transactions> transactions = creditService.getAllTransactionsByCity(state);
+//        if (transactions.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(transactions);
+//        }
+//    }
+//
+//    @GetMapping(value="/transactions/merchant/{merchant}")
+//    public ResponseEntity<List<transactions>> getTransactionsByMerchant(@PathVariable String merchant) throws RecordNotFoundException {
+//        List<transactions> transactions = creditService.getAllTransactionsByMerchant(merchant);
+//        if (transactions.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(transactions);
+//        }
+//    }
 
     @GetMapping(value="/transactions/spend/{from}/{to}")
     public ResponseEntity<List<transactions>> getTransactionsBySpend(@PathVariable("from") int _spendingLimitFrom, @PathVariable("to") int _spendingLimitTo) throws RecordNotFoundException {
@@ -113,15 +168,15 @@ public class RestAPIController {
         }
     }
 
-    @GetMapping(value="/transactions/profession/{job}")
-    public ResponseEntity<List<transactions>> getTransactionsByJob(@PathVariable String job) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByJob(job);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
+//    @GetMapping(value="/transactions/profession/{job}")
+//    public ResponseEntity<List<transactions>> getTransactionsByJob(@PathVariable String job) throws RecordNotFoundException {
+//        List<transactions> transactions = creditService.getAllTransactionsByJob(job);
+//        if (transactions.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(transactions);
+//        }
+//    }
 
     // POST method
     @PostMapping("/new_Customer")

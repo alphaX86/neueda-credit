@@ -1,19 +1,15 @@
 package com.citi.credit.service;
 
 import com.citi.credit.customExceptions.RecordNotFoundException;
-import com.citi.credit.data.AnalysisResults;
 import com.citi.credit.data.customers;
 import com.citi.credit.data.transactions;
-import com.citi.credit.dataRepo.CreditImplement;
 import com.citi.credit.dataRepo.CreditTemplate;
 import com.citi.credit.dataRepo.ICustomerData;
 import com.citi.credit.dataRepo.ITransactionData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CreditService implements ICreditService{
@@ -55,16 +51,7 @@ public class CreditService implements ICreditService{
         return transactionRepo.findBycustomerID(_customerID);
     }
 
-    @Override
-    public List<AnalysisResults> transactionByGender() {
-        List<AnalysisResults> documents = creditTemplate.transactionByGender();
 
-        return documents;
-    }
-//    @Override
-//    public List<transactions> transactionByName(String _first,String Last) throws RecordNotFoundException{
-//        return null;
-//    }
 
     @Override
     public List<transactions> getAllTransactionsByGender(String gender) throws RecordNotFoundException {

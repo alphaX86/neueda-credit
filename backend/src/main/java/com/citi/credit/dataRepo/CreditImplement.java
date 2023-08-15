@@ -1,7 +1,6 @@
 package com.citi.credit.dataRepo;
 
-import com.citi.credit.data.AnalysisResults;
-import com.citi.credit.data.transactions;
+import com.citi.credit.aggregates.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -20,14 +19,77 @@ public class CreditImplement implements CreditTemplate{
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<AnalysisResults> transactionByGender() {
+    public List<genderAggeregate> transactionByGender() {
         GroupOperation groupByGenderAmount = group("gender").sum("amt").as("totalAmount");
         MatchOperation allGenders = match(new Criteria("gender").exists(true));
         ProjectionOperation includes = project("totalAmount").andExpression("gender").previousOperation();
         SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
         Aggregation aggregation = newAggregation(allGenders,groupByGenderAmount,sortBySalesDesc,includes);
-        AggregationResults<AnalysisResults> groupResults = mongoTemplate.aggregate(aggregation, "transactions", AnalysisResults.class);
-        List<AnalysisResults> result = groupResults.getMappedResults();
+        AggregationResults<genderAggeregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", genderAggeregate.class);
+        List<genderAggeregate> result = groupResults.getMappedResults();
         return result;
     }
+
+    @Override
+    public List<jobAggregate> transactionByJob() {
+        GroupOperation groupByGenderAmount = group("Job").sum("amt").as("totalAmount");
+        MatchOperation allGenders = match(new Criteria("Job").exists(true));
+        ProjectionOperation includes = project("totalAmount").andExpression("Job").previousOperation();
+        SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
+        Aggregation aggregation = newAggregation(allGenders,groupByGenderAmount,sortBySalesDesc,includes);
+        AggregationResults<jobAggregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", jobAggregate.class);
+        List<jobAggregate> result = groupResults.getMappedResults();
+        return result;
+    }
+
+    @Override
+    public List<stateAggregate> transactionByState() {
+        GroupOperation groupByGenderAmount = group("state").sum("amt").as("totalAmount");
+        MatchOperation allGenders = match(new Criteria("state").exists(true));
+        ProjectionOperation includes = project("totalAmount").andExpression("state").previousOperation();
+        SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
+        Aggregation aggregation = newAggregation(allGenders,groupByGenderAmount,sortBySalesDesc,includes);
+        AggregationResults<stateAggregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", stateAggregate.class);
+        List<stateAggregate> result = groupResults.getMappedResults();
+        return result;
+    }
+
+    @Override
+    public List<cityAggregate> transactionByCity() {
+        GroupOperation groupByGenderAmount = group("city").sum("amt").as("totalAmount");
+        MatchOperation allGenders = match(new Criteria("city").exists(true));
+        ProjectionOperation includes = project("totalAmount").andExpression("city").previousOperation();
+        SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
+        Aggregation aggregation = newAggregation(allGenders,groupByGenderAmount,sortBySalesDesc,includes);
+        AggregationResults<cityAggregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", cityAggregate.class);
+        List<cityAggregate> result = groupResults.getMappedResults();
+        return result;
+    }
+
+    @Override
+    public List<categoryAggregate> transactionByCategory() {
+        GroupOperation groupByCategoryAmount = group("category").sum("amt").as("totalAmount");
+        MatchOperation allCategory = match(new Criteria("category").exists(true));
+        ProjectionOperation includes = project("totalAmount").andExpression("category").previousOperation();
+        SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
+        Aggregation aggregation = newAggregation(allCategory,groupByCategoryAmount,sortBySalesDesc,includes);
+        AggregationResults<categoryAggregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", categoryAggregate.class);
+        List<categoryAggregate> result = groupResults.getMappedResults();
+        return result;
+    }
+
+    @Override
+    public List<merchantAggregate> transactionByMerchant() {
+        GroupOperation groupByGenderAmount = group("merchant").sum("amt").as("totalAmount");
+        MatchOperation allGenders = match(new Criteria("merchant").exists(true));
+        ProjectionOperation includes = project("totalAmount").andExpression("merchant").previousOperation();
+        SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
+        Aggregation aggregation = newAggregation(allGenders,groupByGenderAmount,sortBySalesDesc,includes);
+        AggregationResults<merchantAggregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", merchantAggregate.class);
+        List<merchantAggregate> result = groupResults.getMappedResults();
+        return result;
+    }
+
+
+
 }

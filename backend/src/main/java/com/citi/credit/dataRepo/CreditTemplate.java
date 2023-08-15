@@ -1,11 +1,25 @@
 package com.citi.credit.dataRepo;
 
-import com.citi.credit.data.AnalysisResults;
-import com.citi.credit.data.transactions;
+import com.citi.credit.aggregates.*;
+
 import java.util.List;
 
 public interface CreditTemplate {
 
-    List<AnalysisResults> transactionByGender();
-//    List<transactions> transactionBy
+    List<genderAggeregate> transactionByGender();
+
+    List<jobAggregate> transactionByJob();
+
+    List<cityAggregate> transactionByCity();
+
+    List<stateAggregate> transactionByState();
+
+    List<merchantAggregate> transactionByMerchant();
+
+    List<categoryAggregate> transactionByCategory();
+
+
+
+
+
 }
