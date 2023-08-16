@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import View from './components/View';
@@ -8,9 +8,16 @@ import Exist from './components/Exist';
 
 function App() {
   return (
-    <div className="container">
-      <Home />
-    </div>
+    <Router>
+      <div className="container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/view" element={<View />} />
+          <Route path="/exist" element={<Exist />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
