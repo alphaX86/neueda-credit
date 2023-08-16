@@ -59,10 +59,10 @@ function ViewCustomer() {
                 </tbody>
             </Table>
             <Pagination>
-                <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
                 <Pagination.First onClick={() => setCurrentPage(1)} />
-                <Pagination.Last onClick={() => setCurrentPage(pageNumbers.length)} />
+                <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
                 <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} />
+                <Pagination.Last onClick={() => setCurrentPage(pageNumbers.length)} />
             </Pagination>
         </div>
     );

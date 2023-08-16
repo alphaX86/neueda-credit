@@ -15,7 +15,6 @@ const Header = () => {
                     </NavDropdown>
                     <NavDropdown title="View" id="basic-nav-dropdown">
                         <NavDropdown.Item href="/view/customer">Customer</NavDropdown.Item>
-                        <NavDropdown.Item href="/view/transactions">Transactions</NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link href="/delete/customer">Delete</Nav.Link>
                     <Nav.Link href="/analyse">Analyse</Nav.Link>

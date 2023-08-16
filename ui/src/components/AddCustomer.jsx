@@ -22,7 +22,7 @@ const AddCustomer = () => {
         });
 
         if (response.ok) {
-            alert('Customer added successfully!');
+            alert('Customer added successfully! Please note your customer ID on view page');
             setFirst('');
             setLast('');
             setGender('');
@@ -36,42 +36,71 @@ const AddCustomer = () => {
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formFirst">
-                <Form.Label>First </Form.Label>
+                <Form.Label>First Name</Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Enter first "
+                    placeholder="John "
                     value={first}
                     onChange={(event) => setFirst(event.target.value)}
+                    required
                 />
             </Form.Group>
 
             <Form.Group controlId="formLast">
-                <Form.Label>Last </Form.Label>
+                <Form.Label>Last Name</Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Enter last "
+                    placeholder="Smith "
                     value={last}
                     onChange={(event) => setLast(event.target.value)}
+                    required
                 />
             </Form.Group>
 
             <Form.Group controlId="formGender">
                 <Form.Label>Gender</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Enter gender"
-                    value={gender}
-                    onChange={(event) => setGender(event.target.value)}
-                />
+                <div>
+                    <Form.Check
+                        inline
+                        label="Male"
+                        type="radio"
+                        name="gender"
+                        value="M"
+                        checked={gender === "M"}
+                        onChange={(event) => setGender(event.target.value)}
+                        required
+                    />
+                    <Form.Check
+                        inline
+                        label="Female"
+                        type="radio"
+                        name="gender"
+                        value="F"
+                        checked={gender === "F"}
+                        onChange={(event) => setGender(event.target.value)}
+                        required
+                    />
+                    <Form.Check
+                        inline
+                        label="Other"
+                        type="radio"
+                        name="gender"
+                        value="other"
+                        checked={gender === "other"}
+                        onChange={(event) => setGender(event.target.value)}
+                        required
+                    />
+                </div>
             </Form.Group>
 
             <Form.Group controlId="formJob">
                 <Form.Label>Job</Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Enter job"
+                    placeholder="Developer"
                     value={job}
                     onChange={(event) => setJob(event.target.value)}
+                    required
                 />
             </Form.Group>
 
@@ -79,14 +108,24 @@ const AddCustomer = () => {
                 <Form.Label>Date of Birth</Form.Label>
                 <Form.Control
                     type="date"
-                    placeholder="Enter date of birth"
+                    placeholder="01/01/2000"
                     value={dob}
                     onChange={(event) => setDob(event.target.value)}
+                    required
                 />
             </Form.Group>
             <br />
-            <Button variant="primary" type="submit">
+            <Button className="btn-block me-2" variant="primary" type="submit">
                 Add Customer
+            </Button>
+            <Button className="btn-block me-2" variant="secondary" type="button" onClick={() => {
+                setFirst('');
+                setLast('');
+                setGender('');
+                setJob('');
+                setDob('');
+            }}>
+                Clear Form
             </Button>
         </Form>
     );

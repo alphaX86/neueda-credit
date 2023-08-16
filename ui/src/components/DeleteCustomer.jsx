@@ -6,23 +6,25 @@ function DeleteCustomer() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const response = await fetch(`http://localhost:8080/api?_customerID=${customerId}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
+        if (window.confirm('Are you sure you want to delete this customer?')) {
+            try {
+                const response = await fetch(`http://localhost:8080/api?_customerID=${customerId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    // Handle successful deletion here
+                    alert('Customer deleted successfully!');
+                } else {
+                    // Handle unsuccessful deletion here
+                    alert('Failed to delete customer');
                 }
-            });
-            if (response.ok) {
-                // Handle successful deletion here
-                alert('Customer deleted successfully!');
-            } else {
-                // Handle unsuccessful deletion here
-                alert('Failed to delete customer');
+            } catch (error) {
+                // Handle error here
+                console.log(error);
             }
-        } catch (error) {
-            // Handle error here
-            console.log(error);
         }
     };
 

@@ -33,6 +33,7 @@ const AddTransaction = () => {
                     type="number"
                     name="amt"
                     value={transaction.amt}
+                    placeholder="100"
                     onChange={handleChange}
                     required
                 />
@@ -44,6 +45,7 @@ const AddTransaction = () => {
                     type="text"
                     name="customer_id"
                     value={transaction.customer_id}
+                    placeholder="543"
                     onChange={handleChange}
                     required
                 />
@@ -55,6 +57,7 @@ const AddTransaction = () => {
                     type="text"
                     name="city"
                     value={transaction.city}
+                    placeholder="New York"
                     onChange={handleChange}
                     required
                 />
@@ -66,6 +69,7 @@ const AddTransaction = () => {
                     type="text"
                     name="state"
                     value={transaction.state}
+                    placeholder="NY"
                     onChange={handleChange}
                     required
                 />
@@ -76,6 +80,7 @@ const AddTransaction = () => {
                 <Form.Control
                     type="text"
                     name="merchant"
+                    placeholder="Amazon"
                     value={transaction.merchant}
                     onChange={handleChange}
                     required
@@ -88,13 +93,24 @@ const AddTransaction = () => {
                     type="text"
                     name="category"
                     value={transaction.category}
+                    placeholder="Shopping"
                     onChange={handleChange}
                     required
                 />
             </Form.Group>
             <br />
-            <Button variant="primary" type="submit">
+            <Button className="btn-block me-2" variant="primary" type="submit">
                 Submit
+            </Button>
+            <Button className="btn-block me-2" variant="secondary" type="button" onClick={() => {
+                setTransaction({amt: "",
+                customer_id: "",
+                city: "",
+                state: "",
+                merchant: "",
+                category: ""});
+            }}>
+                Clear Form
             </Button>
         </Form>
     );
