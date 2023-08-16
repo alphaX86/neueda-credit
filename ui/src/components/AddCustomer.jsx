@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-const API_LINK = 'https://example.com/api/customers';
+// const API_LINK = `http://localhost:8080/api/new_Customer?_first=${first}&_last=${last}&_dob=${dob}&_gender=${gender}&_job=${job}`;
 
 const AddCustomer = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [first, setFirst] = useState('');
+    const [last, setLast] = useState('');
     const [gender, setGender] = useState('');
     const [job, setJob] = useState('');
     const [dob, setDob] = useState('');
@@ -13,18 +13,18 @@ const AddCustomer = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch(API_LINK, {
+        const response = await fetch(`http://localhost:8080/api/new_Customer?_first=${first}&_last=${last}&_gender=${gender}&_job=${job}&_dob=${dob}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ firstName, lastName, gender, job, dob }),
+            body: JSON.stringify({ first, last, gender, job, dob }),
         });
 
         if (response.ok) {
             alert('Customer added successfully!');
-            setFirstName('');
-            setLastName('');
+            setFirst('');
+            setLast('');
             setGender('');
             setJob('');
             setDob('');
@@ -35,23 +35,23 @@ const AddCustomer = () => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formFirstName">
-                <Form.Label>First Name</Form.Label>
+            <Form.Group controlId="formFirst">
+                <Form.Label>First </Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Enter first name"
-                    value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
+                    placeholder="Enter first "
+                    value={first}
+                    onChange={(event) => setFirst(event.target.value)}
                 />
             </Form.Group>
 
-            <Form.Group controlId="formLastName">
-                <Form.Label>Last Name</Form.Label>
+            <Form.Group controlId="formLast">
+                <Form.Label>Last </Form.Label>
                 <Form.Control
                     type="text"
-                    placeholder="Enter last name"
-                    value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
+                    placeholder="Enter last "
+                    value={last}
+                    onChange={(event) => setLast(event.target.value)}
                 />
             </Form.Group>
 
@@ -84,7 +84,7 @@ const AddCustomer = () => {
                     onChange={(event) => setDob(event.target.value)}
                 />
             </Form.Group>
-
+            <br />
             <Button variant="primary" type="submit">
                 Add Customer
             </Button>

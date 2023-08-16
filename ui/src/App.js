@@ -19,7 +19,7 @@ function App() {
                     <Switch> 
                           <Route path = "/" exact component = {Home}></Route>
                           <Route path = "/add/customer" component = {AddCustomer}></Route>
-                          <Route path = "/add/transaction" component = {AddTransaction}></Route>
+                          <Route path = "/add/transactions" component = {AddTransaction}></Route>
                           <Route path = "/delete/customer" component = {DeleteCustomer}></Route>
                           <Route path = "/view/customer" component = {ViewCustomer}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}

@@ -124,9 +124,9 @@ public class RestAPIController {
 
     // POST method
     @PostMapping("/new_Customer")
-    public ResponseEntity<Object> addCusotomer(String _first, String _last, String _dob, String _gender,String _job) throws RecordNotFoundException{
+    public ResponseEntity<Object> addCustomer(String _first, String _last, String _dob, String _gender,String _job) throws RecordNotFoundException{
         try {
-            customers _customer = this.creditService.addCustomer(_first,_last,_dob,_job,_gender);
+            customers _customer = this.creditService.addCustomer(_first,_last,_gender,_job,_dob);
             return ResponseEntity.status(HttpStatus.CREATED).body(_customer);
         } catch (RecordNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());

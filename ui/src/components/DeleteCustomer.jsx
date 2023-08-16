@@ -4,9 +4,26 @@ import { Form, Button } from 'react-bootstrap';
 function DeleteCustomer() {
     const [customerId, setCustomerId] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Handle form submission here
+        try {
+            const response = await fetch(`http://localhost:8080/api?_customerID=${customerId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (response.ok) {
+                // Handle successful deletion here
+                alert('Customer deleted successfully!');
+            } else {
+                // Handle unsuccessful deletion here
+                alert('Failed to delete customer');
+            }
+        } catch (error) {
+            // Handle error here
+            console.log(error);
+        }
     };
 
     return (
@@ -21,6 +38,7 @@ function DeleteCustomer() {
                     required
                 />
             </Form.Group>
+            <br />
             <Button variant="danger" type="submit">
                 Delete Customer
             </Button>
