@@ -54,7 +54,7 @@ public class CreditService implements ICreditService{
 
 
 
-    public customers addCustomer(String _first, String _last, String _dob, String _gender,String _job) throws RecordNotFoundException {
+    public customers addCustomer(String _first, String _last,  String _gender,String _job,String _dob) throws RecordNotFoundException {
         customers _newCustomer = new customers(_first,_last,_dob,_job,_gender,-1);
         int custID = _newCustomer.getCustomer_id();
 

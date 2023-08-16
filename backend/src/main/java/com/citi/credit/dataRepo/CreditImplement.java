@@ -32,11 +32,11 @@ public class CreditImplement implements CreditTemplate{
 
     @Override
     public List<jobAggregate> transactionByJob() {
-        GroupOperation groupByGenderAmount = group("Job").sum("amt").as("totalAmount");
-        MatchOperation allGenders = match(new Criteria("Job").exists(true));
+        GroupOperation grouper = group("Job").sum("amt").as("totalAmount");
+        MatchOperation matcher = match(new Criteria("Job").exists(true));
         ProjectionOperation includes = project("totalAmount").andExpression("Job").previousOperation();
         SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
-        Aggregation aggregation = newAggregation(allGenders,groupByGenderAmount,sortBySalesDesc,includes);
+        Aggregation aggregation = newAggregation(matcher,grouper,sortBySalesDesc,includes);
         AggregationResults<jobAggregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", jobAggregate.class);
         List<jobAggregate> result = groupResults.getMappedResults();
         return result;
@@ -91,8 +91,7 @@ public class CreditImplement implements CreditTemplate{
     }
 
     @Override
-    public List<spendAggregate> transactionBySpentValue(double _low,double _high){
-
+    public List<spendAggregate> transactionBySpentValue(double _low, double _high){
         return null;
     }
 
