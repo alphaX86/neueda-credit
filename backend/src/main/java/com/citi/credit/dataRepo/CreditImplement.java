@@ -19,14 +19,14 @@ public class CreditImplement implements CreditTemplate{
     private MongoTemplate mongoTemplate;
 
     @Override
-    public List<genderAggeregate> transactionByGender() {
+    public List<genderAggregate> transactionByGender() {
         GroupOperation groupByGenderAmount = group("gender").sum("amt").as("totalAmount");
         MatchOperation allGenders = match(new Criteria("gender").exists(true));
         ProjectionOperation includes = project("totalAmount").andExpression("gender").previousOperation();
         SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
         Aggregation aggregation = newAggregation(allGenders,groupByGenderAmount,sortBySalesDesc,includes);
-        AggregationResults<genderAggeregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", genderAggeregate.class);
-        List<genderAggeregate> result = groupResults.getMappedResults();
+        AggregationResults<genderAggregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", genderAggregate.class);
+        List<genderAggregate> result = groupResults.getMappedResults();
         return result;
     }
 
@@ -88,6 +88,12 @@ public class CreditImplement implements CreditTemplate{
         AggregationResults<merchantAggregate> groupResults = mongoTemplate.aggregate(aggregation, "transactions", merchantAggregate.class);
         List<merchantAggregate> result = groupResults.getMappedResults();
         return result;
+    }
+
+    @Override
+    public List<spendAggregate> transactionBySpentValue(double _low,double _high){
+
+        return null;
     }
 
 

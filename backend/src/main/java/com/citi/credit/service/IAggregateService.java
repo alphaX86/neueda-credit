@@ -5,7 +5,7 @@ import com.citi.credit.aggregates.*;
 import java.util.List;
 
 public interface IAggregateService {
-    public List<genderAggeregate> transactionByGender() ;
+    public List<genderAggregate> transactionByGender() ;
 
     public List<jobAggregate> transactionByJob() ;
 
@@ -16,4 +16,6 @@ public interface IAggregateService {
     public List<categoryAggregate> transactionByCategory() ;
 
     public List<merchantAggregate> transactionByMerchant() ;
+
+    List<spendAggregate> transactionBySpentValue(double _low, double _high);
 }

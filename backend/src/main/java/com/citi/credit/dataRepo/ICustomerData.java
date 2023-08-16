@@ -12,4 +12,7 @@ public interface ICustomerData extends MongoRepository<customers,String> {
     @Query
     customers findBycustomerID(int _customerID);
 
+    @Query
+    customers findByCustInfo(String _first,String _last,String dob);
+
 }

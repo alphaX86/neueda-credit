@@ -25,8 +25,8 @@ public class AggregateService implements IAggregateService {
 
 
     @Override
-    public List<genderAggeregate> transactionByGender() {
-        List<genderAggeregate> documents = creditTemplate.transactionByGender();
+    public List<genderAggregate> transactionByGender() {
+        List<genderAggregate> documents = creditTemplate.transactionByGender();
 
         return documents;
     }
@@ -60,4 +60,10 @@ public class AggregateService implements IAggregateService {
         List<categoryAggregate> documents = creditTemplate.transactionByCategory();
 
         return documents;    }
+
+    @Override
+    public List<spendAggregate> transactionBySpentValue(double _low, double _high){
+        List<spendAggregate> documents = creditTemplate.transactionBySpentValue(_low,_high);
+        return documents;
+    }
 }

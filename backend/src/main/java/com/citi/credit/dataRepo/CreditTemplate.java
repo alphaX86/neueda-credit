@@ -1,12 +1,14 @@
 package com.citi.credit.dataRepo;
 
 import com.citi.credit.aggregates.*;
+import com.citi.credit.data.transactions;
+import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
 public interface CreditTemplate {
 
-    List<genderAggeregate> transactionByGender();
+    List<genderAggregate> transactionByGender();
 
     List<jobAggregate> transactionByJob();
 
@@ -18,8 +20,5 @@ public interface CreditTemplate {
 
     List<categoryAggregate> transactionByCategory();
 
-
-
-
-
+    List<spendAggregate> transactionBySpentValue(double _low, double _high);
 }
