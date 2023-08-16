@@ -40,6 +40,42 @@ public class RestControllerTests {
         assertEquals(HttpStatus.OK, result.getStatusCode());
     }
 
+    @Test
+    public void reachGetAllTransactionsByMerchant() {
+        ResponseEntity<List<transactions>> result = restTemplate.exchange("/api/transactions/merchant/Baumbach%20Ltd", HttpMethod.GET, null, new ParameterizedTypeReference<List<transactions>>() {});
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+    }
+
+    @Test
+    public void reachGetAllTransactionsByCity() {
+        ResponseEntity<List<transactions>> result = restTemplate.exchange("/api/transactions/city/Achille", HttpMethod.GET, null, new ParameterizedTypeReference<List<transactions>>() {});
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+    }
+
+    @Test
+    public void reachGetAllTransactionsByState() {
+        ResponseEntity<List<transactions>> result = restTemplate.exchange("/api/transactions/state/OK", HttpMethod.GET, null, new ParameterizedTypeReference<List<transactions>>() {});
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+    }
+
+    @Test
+    public void reachGetAllTransactionsByCategory() {
+        ResponseEntity<List<transactions>> result = restTemplate.exchange("/api/transactions/category/gas_transport", HttpMethod.GET, null, new ParameterizedTypeReference<List<transactions>>() {});
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+    }
+    
+    @Test
+    public void reachGetAllTransactionsByProfession() {
+        ResponseEntity<List<transactions>> result = restTemplate.exchange("/api/transactions/profession/Seismic%20interpreter", HttpMethod.GET, null, new ParameterizedTypeReference<List<transactions>>() {});
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+    }
+
+    @Test
+    public void reachGetAllTransactionsBySpendLimit() {
+        ResponseEntity<List<transactions>> result = restTemplate.exchange("/api/transactions/spend/1000/1500", HttpMethod.GET, null, new ParameterizedTypeReference<List<transactions>>() {});
+        assertEquals(HttpStatus.OK, result.getStatusCode());
+    }
+
     // Conditional tests
     // TBD 
 }
