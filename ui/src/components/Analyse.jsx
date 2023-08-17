@@ -24,36 +24,48 @@ function Analyse() {
                 <Col>
                     <h1>Charts</h1>
                     <Form>
-                        <Form.Check
-                            type="checkbox"
-                            label="Gender VS Amount"
-                            checked={options.gender}
-                            onChange={() => handleOptionChange('gender')}
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            label="City VS Amount"
-                            checked={options.city}
-                            onChange={() => handleOptionChange('city')}
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            label="State VS Amount"
-                            checked={options.state}
-                            onChange={() => handleOptionChange('state')}
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            label="Job VS Amount"
-                            checked={options.job}
-                            onChange={() => handleOptionChange('job')}
-                        />
-                        <Form.Check
-                            type="checkbox"
-                            label="Merchant VS Amount"
-                            checked={options.merchant}
-                            onChange={() => handleOptionChange('merchant')}
-                        />
+                        <Row>
+                            <Col>
+                                <Form.Check
+                                    type="checkbox"
+                                    label="Gender VS Amount"
+                                    checked={options.gender}
+                                    onChange={() => handleOptionChange('gender')}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Check
+                                    type="checkbox"
+                                    label="City VS Amount"
+                                    checked={options.city}
+                                    onChange={() => handleOptionChange('city')}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Check
+                                    type="checkbox"
+                                    label="State VS Amount"
+                                    checked={options.state}
+                                    onChange={() => handleOptionChange('state')}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Check
+                                    type="checkbox"
+                                    label="Job VS Amount"
+                                    checked={options.job}
+                                    onChange={() => handleOptionChange('job')}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Check
+                                    type="checkbox"
+                                    label="Merchant VS Amount"
+                                    checked={options.merchant}
+                                    onChange={() => handleOptionChange('merchant')}
+                                />
+                            </Col>
+                        </Row>
                     </Form>
                 </Col>
             </Row>

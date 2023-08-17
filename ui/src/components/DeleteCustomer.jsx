@@ -29,7 +29,7 @@ function DeleteCustomer() {
         event.preventDefault();
         if (window.confirm('Are you sure you want to delete this customer?')) {
             try {
-                const response = await fetch(`http://localhost:8080/api/customer?_customerID=${customerId}`, {
+                const response = await fetch(`http://localhost:8080/api?_customerID=${customerId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'

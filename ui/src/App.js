@@ -18,13 +18,13 @@ function App() {
               <Header />
                 <div className="container">
                     <Switch> 
-                          <Route path = "/" exact component = {Home}></Route>
-                          <Route path = "/add/customer" component = {AddCustomer}></Route>
-                          <Route path = "/add/transactions" component = {AddTransaction}></Route>
-                          <Route path = "/delete/customer" component = {DeleteCustomer}></Route>
-                          <Route path = "/view/customer" component = {ViewCustomer}></Route>
-                          <Route path = "/analyse" component={Analyse}></Route>
-                          {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
+                          <Route path = "/" exact component = {Home} />
+                          <Route path = "/add/customer" component = {AddCustomer} />
+                          <Route path = "/add/transactions" component = {AddTransaction} />
+                          <Route path = "/delete/customer" component = {DeleteCustomer} />
+                          <Route path = "/view/customer" component = {ViewCustomer} />
+                          <Route path = "/analyse" component={Analyse} />
+                          {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent} /> */}
                     </Switch>
                 </div>
               <Footer />

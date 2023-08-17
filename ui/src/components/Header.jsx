@@ -4,7 +4,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 const Header = () => {
     return (
         <Navbar bg="light" expand="lg" className="justify-content-center p-3">
-            <Navbar.Brand href="#home">CreDeX</Navbar.Brand>
+            <Navbar.Brand href="/">CreDeX</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
