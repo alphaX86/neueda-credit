@@ -1,9 +1,11 @@
 package com.citi.credit.controller;
 
 
+import com.citi.credit.aggregates.*;
 import com.citi.credit.customExceptions.RecordNotFoundException;
 import com.citi.credit.data.customers;
 import com.citi.credit.data.transactions;
+import com.citi.credit.service.AggregateService;
 import com.citi.credit.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ public class RestAPIController {
 
     @Autowired
     private CreditService creditService;
+
+    @Autowired
+    private AggregateService aggregateService;
 
     @GetMapping(value="/allCustomers")
     public List<customers> getAllCustomers(){
@@ -52,81 +57,13 @@ public class RestAPIController {
         }
     }
 
-    @GetMapping(value="/transactions/gender/{gender}")
-    public ResponseEntity<List<transactions>> getTransactionsByGender(@PathVariable String gender) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByGender(gender);
-        if (transactions.size()==0) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
 
-    @GetMapping(value="/transactions/city/{city}")
-    public ResponseEntity<List<transactions>> getTransactionsByCity(@PathVariable String city) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByCity(city);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
-
-    @GetMapping(value="/transactions/category/{category}")
-    public ResponseEntity<List<transactions>> getTransactionsByCategory(@PathVariable String category) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByCategory(category);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
-
-    @GetMapping(value="/transactions/state/{state}")
-    public ResponseEntity<List<transactions>> getTransactionsByState(@PathVariable String state) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByCity(state);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
-
-    @GetMapping(value="/transactions/merchant/{merchant}")
-    public ResponseEntity<List<transactions>> getTransactionsByMerchant(@PathVariable String merchant) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByMerchant(merchant);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
-
-    @GetMapping(value="/transactions/spend/{from}/{to}")
-    public ResponseEntity<List<transactions>> getTransactionsBySpend(@PathVariable("from") int _spendingLimitFrom, @PathVariable("to") int _spendingLimitTo) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsBySpending(_spendingLimitFrom,_spendingLimitTo);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
-
-    @GetMapping(value="/transactions/profession/{job}")
-    public ResponseEntity<List<transactions>> getTransactionsByJob(@PathVariable String job) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsByJob(job);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
 
     // POST method
-    @PostMapping("/new_Customer")
-    public ResponseEntity<Object> addCusotomer(String _first, String _last, String _dob, String _gender,String _job) throws RecordNotFoundException{
+    @PostMapping("/newCustomer/{_first}/{_last}/{_dob}/{_gender}/{_job}")
+    public ResponseEntity<Object> addCustomer(String _first, String _last, String _gender,String _job, String _dob) throws RecordNotFoundException{
         try {
-            customers _customer = this.creditService.addCustomer(_first,_last,_dob,_job,_gender);
+            customers _customer = this.creditService.addCustomer(_first,_last,_gender,_job,_dob);
             return ResponseEntity.status(HttpStatus.CREATED).body(_customer);
         } catch (RecordNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
