@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Pagination } from 'react-bootstrap';
+import { Table, Pagination, Form, Button } from 'react-bootstrap';
 
 function ViewCustomer() {
     const [data, setData] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(15);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,7 +18,20 @@ function ViewCustomer() {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = data.filter((item) => {
+        if (searchTerm === '') {
+            return true;
+        }
+        const regex = new RegExp(searchTerm, 'i');
+        return (
+            regex.test(item.customer_id) ||
+            regex.test(item.first) ||
+            regex.test(item.last) ||
+            regex.test(item.gender) ||
+            regex.test(item.job) ||
+            regex.test(item.dob)
+        );
+    }).slice(indexOfFirstItem, indexOfLastItem);
 
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(data.length / itemsPerPage); i++) {
@@ -34,6 +48,12 @@ function ViewCustomer() {
 
     return (
         <div>
+            <Form inline>
+                <Form.Control type="text" placeholder="Search" className="mr-sm-2" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                <Button variant="outline-success" onClick={() => setCurrentPage(1)}>
+                    Search
+                </Button>
+            </Form>
             <Table striped bordered hover>
                 <thead>
                     <tr>
@@ -61,6 +81,7 @@ function ViewCustomer() {
             <Pagination>
                 <Pagination.First onClick={() => setCurrentPage(1)} />
                 <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} />
+                
                 <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} />
                 <Pagination.Last onClick={() => setCurrentPage(pageNumbers.length)} />
             </Pagination>

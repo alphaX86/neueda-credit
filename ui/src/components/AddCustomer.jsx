@@ -80,16 +80,6 @@ const AddCustomer = () => {
                         onChange={(event) => setGender(event.target.value)}
                         required
                     />
-                    <Form.Check
-                        inline
-                        label="Other"
-                        type="radio"
-                        name="gender"
-                        value="other"
-                        checked={gender === "other"}
-                        onChange={(event) => setGender(event.target.value)}
-                        required
-                    />
                 </div>
             </Form.Group>
 

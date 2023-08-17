@@ -1,69 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import React, { useState } from 'react';
+import { Form, Container, Row, Col } from 'react-bootstrap';
+import Charts from './Charts';
 
-const Analyse = () => {
-    const [data, setData] = useState([]);
-    const [showChart1, setShowChart1] = useState(false);
-    const [showChart2, setShowChart2] = useState(false);
+function Analyse() {
+    const [options, setOptions] = useState({
+        gender: false,
+        city: false,
+        state: false,
+        job: false,
+        merchant: false
+    });
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try {
-            const response = await fetch('https://mongodb-api-url.com/data');
-            const jsonData = await response.json();
-            setData(jsonData);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    const handleChart1Click = () => {
-        setShowChart1(true);
-        setShowChart2(false);
-    };
-
-    const handleChart2Click = () => {
-        setShowChart1(false);
-        setShowChart2(true);
+    const handleOptionChange = (option) => {
+        setOptions({
+            ...options,
+            [option]: !options[option]
+        });
     };
 
     return (
         <Container>
             <Row>
                 <Col>
-                    <Button onClick={handleChart1Click}>Chart 1</Button>
-                </Col>
-                <Col>
-                    <Button onClick={handleChart2Click}>Chart 2</Button>
+                    <h1>Charts</h1>
+                    <Form>
+                        <Form.Check
+                            type="checkbox"
+                            label="Gender VS Amount"
+                            checked={options.gender}
+                            onChange={() => handleOptionChange('gender')}
+                        />
+                        <Form.Check
+                            type="checkbox"
+                            label="City VS Amount"
+                            checked={options.city}
+                            onChange={() => handleOptionChange('city')}
+                        />
+                        <Form.Check
+                            type="checkbox"
+                            label="State VS Amount"
+                            checked={options.state}
+                            onChange={() => handleOptionChange('state')}
+                        />
+                        <Form.Check
+                            type="checkbox"
+                            label="Job VS Amount"
+                            checked={options.job}
+                            onChange={() => handleOptionChange('job')}
+                        />
+                        <Form.Check
+                            type="checkbox"
+                            label="Merchant VS Amount"
+                            checked={options.merchant}
+                            onChange={() => handleOptionChange('merchant')}
+                        />
+                    </Form>
                 </Col>
             </Row>
-            {showChart1 && (
-                <LineChart width={600} height={300} data={data}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-                </LineChart>
-            )}
-            {showChart2 && (
-                <LineChart width={600} height={300} data={data}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="amt" stroke="#8884d8" activeDot={{ r: 8 }} />
-                </LineChart>
-            )}
+            <Row>
+                <Col>
+                    {options.gender && (
+                        <div className="chart">
+                            <h2>Gender VS Amount</h2>
+                            <Charts
+                                height={'600px'}
+                                width={'800px'}
+                                chartId={'64ddae70-c4a3-475f-8618-b60739251622'}
+                            />
+                        </div>
+                    )}
+                    {options.city && (
+                        <div className="chart">
+                            <h2>City VS Amount</h2>
+                            <Charts
+                                height={'600px'}
+                                width={'800px'}
+                                chartId={'64ddb438-51cb-4d7f-8f62-40c93807b03e'}
+                            />
+                        </div>
+                    )}
+                    {options.state && (
+                        <div className="chart">
+                            <h2>State VS Amount</h2>
+                            <Charts
+                                height={'600px'}
+                                width={'800px'}
+                                chartId={'64ddb4cd-c65b-4eeb-89bc-d6c37cbb3ef9'}
+                            />
+                        </div>
+                    )}
+                    {options.job && (
+                        <div className="chart">
+                            <h2>Job VS Amount</h2>
+                            <Charts
+                                height={'600px'}
+                                width={'800px'}
+                                chartId={'64ddb7c8-e2f1-47d7-8746-240a2ee63c05'}
+                            />
+                        </div>
+                    )}
+                    {options.merchant && (
+                        <div className="chart">
+                            <h2>Merchant VS Amount</h2>
+                            <Charts
+                                height={'600px'}
+                                width={'800px'}
+                                chartId={'64ddb0bc-7533-4628-883a-b3dab00ecd52'}
+                            />
+                        </div>
+                    )}
+                </Col>
+            </Row>
         </Container>
     );
-};
+}
 
 export default Analyse;

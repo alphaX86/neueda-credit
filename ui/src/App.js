@@ -9,6 +9,7 @@ import AddCustomer from './components/AddCustomer';
 import AddTransaction from './components/AddTransaction';
 import DeleteCustomer from './components/DeleteCustomer';
 import ViewCustomer from './components/ViewCustomer';
+import Analyse from './components/Analyse';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                           <Route path = "/add/transactions" component = {AddTransaction}></Route>
                           <Route path = "/delete/customer" component = {DeleteCustomer}></Route>
                           <Route path = "/view/customer" component = {ViewCustomer}></Route>
+                          <Route path = "/analyse" component={Analyse}></Route>
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent}></Route> */}
                     </Switch>
                 </div>
