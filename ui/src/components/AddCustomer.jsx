@@ -13,7 +13,7 @@ const AddCustomer = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch(`http://localhost:8080/api/new_Customer?_first=${first}&_last=${last}&_gender=${gender}&_job=${job}&_dob=${dob}`, {
+        const response = await fetch(`http://localhost:8080/api/newCustomer/${first}/${last}/${dob}/${gender}/${job}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
