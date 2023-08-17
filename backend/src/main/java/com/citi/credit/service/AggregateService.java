@@ -2,9 +2,7 @@ package com.citi.credit.service;
 
 
 import com.citi.credit.aggregates.*;
-import com.citi.credit.dataRepo.CreditTemplate;
-import com.citi.credit.dataRepo.ICustomerData;
-import com.citi.credit.dataRepo.ITransactionData;
+import com.citi.credit.dataRepo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +20,9 @@ public class AggregateService implements IAggregateService {
 
     @Autowired
     private CreditTemplate creditTemplate;
+
+    @Autowired
+    private IHighLow highLow;
 
 
     @Override
@@ -62,8 +63,16 @@ public class AggregateService implements IAggregateService {
         return documents;    }
 
     @Override
-    public List<AggregationResult> transactionBySpentValue( double customAmount){
-        List<AggregationResult> documents = creditTemplate.transactionBySpentValue(customAmount);
+    public List<HighResults> transactionByHighValue(double customAmount){
+        List<HighResults> documents = highLow.transactionByHighValue(customAmount);
         return documents;
     }
+
+    @Override
+    public List<LowResults> transactionByLowValue(double customAmount){
+        List<LowResults> documents = highLow.transactionByLowValue(customAmount);
+        return documents;
+    }
+
+
 }

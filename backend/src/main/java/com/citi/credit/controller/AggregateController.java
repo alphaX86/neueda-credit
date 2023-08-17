@@ -3,13 +3,14 @@ package com.citi.credit.controller;
 
 import com.citi.credit.aggregates.*;
 import com.citi.credit.customExceptions.RecordNotFoundException;
-import com.citi.credit.data.transactions;
 import com.citi.credit.service.AggregateService;
 import com.citi.credit.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @RestController
@@ -83,13 +84,17 @@ public class AggregateController {
         }
     }
 
-//    @GetMapping(value="/transactions/spend/{from}/{to}")
-//    public ResponseEntity<List<AggregationResult>> getTransactionsBySpend(double customAmount) throws RecordNotFoundException {
-//        List<AggregationResult> transactions = aggregateService.transactionBySpentValue(customAmount);
-//        if (transactions.isEmpty()) {
-//            return ResponseEntity.notFound().build();
-//        } else {
-//            return ResponseEntity.ok(transactions);
-//        }
-//    }
+    @GetMapping(value="/transactions/spend/{threshold}")
+    public ResponseEntity<List<Object>> getTransactionsBySpend(double customAmount) throws RecordNotFoundException {
+        List<HighResults> highTransactions = aggregateService.transactionByHighValue(customAmount);
+        List<LowResults> lowTransactions = aggregateService.transactionByLowValue(customAmount);
+        List<Object> result = new ArrayList<>();
+        result.add(0,highTransactions.get(0));
+        result.add(1,lowTransactions.get(0));
+        if (result.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(result);
+        }
+    }
 }

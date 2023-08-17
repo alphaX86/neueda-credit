@@ -18,5 +18,5 @@ public interface CreditTemplate {
 
     List<categoryAggregate> transactionByCategory();
 
-    List<AggregationResult> transactionBySpentValue(double customAmount);
+
 }

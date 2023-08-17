@@ -17,5 +17,8 @@ public interface IAggregateService {
 
     public List<merchantAggregate> transactionByMerchant() ;
 
-    List<AggregationResult> transactionBySpentValue(double customAmount);
+    List<HighResults> transactionByHighValue(double customAmount);
+
+    public List<LowResults> transactionByLowValue(double customAmount) ;
+
 }
