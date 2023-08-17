@@ -37,7 +37,8 @@ public class CreditService implements ICreditService{
     public customers getCustomerByID(int _customerID) throws RecordNotFoundException{
         customers customer = customerRepo.findBycustomerID(_customerID);
         if (customer == null){
-            throw new RecordNotFoundException("Customer with customer ID"+_customerID+"doesnot exist");
+            throw new RecordNotFoundException("Customer with customer ID"
+                    +_customerID+"does not exist");
         }
         return customer;
     }
@@ -46,7 +47,8 @@ public class CreditService implements ICreditService{
     public List<transactions> transactionByCustID(int _customerID) throws RecordNotFoundException {
         customers _customers  = customerRepo.findBycustomerID(_customerID);
         if(_customers==null){
-            throw new RecordNotFoundException("Customer with customer ID"+_customerID+"doesnot exist");
+            throw new RecordNotFoundException("Customer with customer ID"
+                    +_customerID+"does not exist");
         }
         return transactionRepo.findBycustomerID(_customerID);
     }
@@ -55,7 +57,7 @@ public class CreditService implements ICreditService{
 
 
     public customers addCustomer(String _first, String _last,  String _gender,String _job,String _dob) throws RecordNotFoundException {
-        customers _newCustomer = new customers(_first,_last,_dob,_job,_gender,-1);
+        customers _newCustomer = new customers(_first,_last,_gender,_job,_dob,-1);
         int custID = _newCustomer.getCustomer_id();
 
         int count = (int)this.customerRepo.count();
@@ -70,7 +72,8 @@ public class CreditService implements ICreditService{
     public customers deleteCustomer(int _customerID) throws RecordNotFoundException {
         customers _customer = customerRepo.findBycustomerID(_customerID);
         if (_customer == null){
-            throw new RecordNotFoundException("customer record with " + _customerID + "doesnot exists");
+            throw new RecordNotFoundException("customer record with "
+                    + _customerID + "does not exists");
         }
 
         customerRepo.delete(_customer);

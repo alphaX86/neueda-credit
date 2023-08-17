@@ -91,10 +91,35 @@ public class CreditImplement implements CreditTemplate{
     }
 
     @Override
-    public List<spendAggregate> transactionBySpentValue(double _low, double _high){
-        return null;
+    public List<AggregationResult> transactionBySpentValue(double customAmount){
+
+//        Aggregation aggregation = Aggregation.newAggregation(
+//                Aggregation.group("gender", "job")
+//                        .sum("amountSpent").as("totalAmount")
+//                        .push("$$ROOT").as("transactions"),
+//                Aggregation.project("gender", "job", "totalAmount", "transactions")
+//                        .andExpression("case when totalAmount >= " + customAmount + " then 'High Value' else 'Low Value' end").as("category")
+//        );
+
+        GroupOperation spending = group("gender").sum("amt").as("totalAmount").push("$$ROOT").as("transactions");
+        MatchOperation allGenders = match(new Criteria("gender").exists(true));
+        ProjectionOperation includes = project("totalAmount").andExpression("case when totalAmount >="+customAmount+"then 'High' else 'low' end").previousOperation();
+        SortOperation sortBySalesDesc = sort(Sort.by(Sort.Direction.DESC,"totalAmount"));
+
+        Aggregation aggregation = newAggregation(allGenders,spending,sortBySalesDesc,includes);
+
+
+        AggregationResults<AggregationResult> results = mongoTemplate.aggregate(
+                aggregation, "transactions", AggregationResult.class
+        );
+
+        return results.getMappedResults();
+
     }
-
-
-
 }
+
+
+
+
+
+

@@ -83,13 +83,13 @@ public class AggregateController {
         }
     }
 
-    @GetMapping(value="/transactions/spend/{from}/{to}")
-    public ResponseEntity<List<transactions>> getTransactionsBySpend(@PathVariable("from") int _spendingLimitFrom, @PathVariable("to") int _spendingLimitTo) throws RecordNotFoundException {
-        List<transactions> transactions = creditService.getAllTransactionsBySpending(_spendingLimitFrom,_spendingLimitTo);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            return ResponseEntity.ok(transactions);
-        }
-    }
+//    @GetMapping(value="/transactions/spend/{from}/{to}")
+//    public ResponseEntity<List<AggregationResult>> getTransactionsBySpend(double customAmount) throws RecordNotFoundException {
+//        List<AggregationResult> transactions = aggregateService.transactionBySpentValue(customAmount);
+//        if (transactions.isEmpty()) {
+//            return ResponseEntity.notFound().build();
+//        } else {
+//            return ResponseEntity.ok(transactions);
+//        }
+//    }
 }

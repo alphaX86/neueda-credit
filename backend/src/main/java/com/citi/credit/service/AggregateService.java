@@ -62,8 +62,8 @@ public class AggregateService implements IAggregateService {
         return documents;    }
 
     @Override
-    public List<spendAggregate> transactionBySpentValue(double _low, double _high){
-        List<spendAggregate> documents = creditTemplate.transactionBySpentValue(_low,_high);
+    public List<AggregationResult> transactionBySpentValue( double customAmount){
+        List<AggregationResult> documents = creditTemplate.transactionBySpentValue(customAmount);
         return documents;
     }
 }
