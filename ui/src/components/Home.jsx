@@ -16,7 +16,6 @@ const Home = () => {
                 <li><strong>View Customer Data:</strong> Access a comprehensive overview of your customers and their credit card accounts. Stay organized with detailed customer profiles that include essential information and transaction history.</li>
                 <li><strong>Delete Customer Data:</strong> Need to remove outdated records? CreDeX lets you effortlessly delete customer data while maintaining the integrity of your database.</li>
                 <li><strong>Transaction Analysis with Interactive Charts:</strong> Gain deep insights into your credit card usage patterns. Our dynamic charts visually represent your transactions, making it easier than ever to understand your spending habits and trends.</li>
-                <li><strong>Advanced Security Measures:</strong> Your data security is our priority. CreDeX employs state-of-the-art encryption and data protection protocols to ensure that your sensitive information remains private and secure.</li>
             </ul>
 
             <h2>Join CreDeX Today</h2>
