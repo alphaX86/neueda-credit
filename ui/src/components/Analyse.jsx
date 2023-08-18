@@ -158,7 +158,7 @@ function Analyse() {
                             </div>
                         </div>
                     )}
-                    {options.merchant && (
+                    {options.category && (
                         <div className="chart">
                             <h2>Category VS Amount</h2>
                             <div className='d-flex'>
