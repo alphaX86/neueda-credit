@@ -61,7 +61,7 @@ public class RestAPIController {
 
     // POST method
     @PostMapping("/newCustomer/{_first}/{_last}/{_dob}/{_gender}/{_job}")
-    public ResponseEntity<Object> addCusotomer(@PathVariable String _first,@PathVariable String _last,@PathVariable String _gender,@PathVariable String _job,@PathVariable String _dob) throws RecordNotFoundException{
+    public ResponseEntity<Object> addCustomer(@PathVariable String _first, @PathVariable String _last, @PathVariable String _gender, @PathVariable String _job, @PathVariable String _dob) throws RecordNotFoundException{
         try {
             customers _customer = this.creditService.addCustomer(_first,_last,_gender,_job,_dob);
             return ResponseEntity.status(HttpStatus.CREATED).body("customr added succesfully");

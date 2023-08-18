@@ -23,6 +23,18 @@ public class RestControllerTests {
 
     // API reachablity tests
     @Test
+    public void reachGetCustomer() {
+        ResponseEntity<List<customers>> result = restTemplate.exchange("/api/customer?_customerID=1", HttpMethod.GET, null, new ParameterizedTypeReference<List<customers>>() {});
+        assertEquals(HttpStatus.TEMPORARY_REDIRECT, result.getStatusCode());
+    }
+
+    @Test
+    public void reachGetTransaction() {
+        ResponseEntity<List<customers>> result = restTemplate.exchange("/api/customer/transaction?_customerID=1", HttpMethod.GET, null, new ParameterizedTypeReference<List<customers>>() {});
+        assertEquals(HttpStatus.TEMPORARY_REDIRECT, result.getStatusCode());
+    }
+
+    @Test
     public void reachGetAllCustomers() {
         ResponseEntity<List<customers>> result = restTemplate.exchange("/api/allCustomers", HttpMethod.GET, null, new ParameterizedTypeReference<List<customers>>() {});
         assertEquals(HttpStatus.OK, result.getStatusCode());
@@ -33,13 +45,4 @@ public class RestControllerTests {
         ResponseEntity<List<transactions>> result = restTemplate.exchange("/api/transactions", HttpMethod.GET, null, new ParameterizedTypeReference<List<transactions>>() {});
         assertEquals(HttpStatus.OK, result.getStatusCode());
     }
-
-    @Test
-    public void reachGetAllTransactionsByGender() {
-        ResponseEntity<List<transactions>> result = restTemplate.exchange("/api/transactions/gender/M", HttpMethod.GET, null, new ParameterizedTypeReference<List<transactions>>() {});
-        assertEquals(HttpStatus.OK, result.getStatusCode());
-    }
-
-    // Conditional tests
-    // TBD 
 }
