@@ -182,6 +182,22 @@ public class transactions {
         this.dob = dob;
     }
 
+    public transactions(String trans_date_trans_time, Double amt, int trans_num, int customerID, String city, String state, String merchant, String category, String first, String last, String gender, String job, String dob) {
+        this.trans_date_trans_time = trans_date_trans_time;
+        this.amt = amt;
+        this.trans_num = trans_num;
+        this.customerID = customerID;
+        this.city = city;
+        this.state = state;
+        this.merchant = merchant;
+        this.category = category;
+        this.first = first;
+        this.last = last;
+        this.gender = gender;
+        this.job = job;
+        this.dob = dob;
+    }
+
     public transactions(ObjectId _id, String trans_date_trans_time, double amt, int trans_num, int customer_id, String city, String state, int city_population, String merchant, String category, String first, String last, String gender, String job, String dob) {
         this._id = _id;
         this.trans_date_trans_time = trans_date_trans_time;

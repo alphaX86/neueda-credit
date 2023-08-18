@@ -70,6 +70,16 @@ public class RestAPIController {
         }
     }
 
+    @PostMapping("/transactions/{custId}/{amt}/{category}/{merchant}/{city}/{state}")
+    public ResponseEntity<Object> addTransaction(@PathVariable int custId,@PathVariable double amt,@PathVariable String category,@PathVariable String merchant,@PathVariable String city,@PathVariable String state) throws RecordNotFoundException{
+        try {
+            transactions transactions = this.creditService.addTransaction(custId,amt,category,merchant,city,state);
+            return ResponseEntity.status(HttpStatus.CREATED).body(transactions);
+        } catch (RecordNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+        }
+    }
+
     @DeleteMapping
     public ResponseEntity<Object> deleteCustomer(int _customerID) throws RecordNotFoundException{
         try{
