@@ -11,7 +11,7 @@ const AddTransaction = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:8080/api/transactions/${custId}/${amt}/${category}/${merchant}/${city}/${state}`, {
+        const response = await fetch(`http://pbwmchallenge7.conygre.com:8080/api/transactions/${custId}/${amt}/${category}/${merchant}/${city}/${state}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

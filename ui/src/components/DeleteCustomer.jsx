@@ -8,7 +8,7 @@ function DeleteCustomer() {
     const handleFetch = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`http://localhost:8080/api/customer?_customerID=${customerId}`, {
+            const response = await fetch(`http://pbwmchallenge7.conygre.com:8080/api/customer?_customerID=${customerId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ function DeleteCustomer() {
         event.preventDefault();
         if (window.confirm('Are you sure you want to delete this customer?')) {
             try {
-                const response = await fetch(`http://localhost:8080/api?_customerID=${customerId}`, {
+                const response = await fetch(`http://pbwmchallenge7.conygre.com:8080/api?_customerID=${customerId}`, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
