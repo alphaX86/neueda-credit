@@ -9,7 +9,7 @@ function ViewTransaction() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch(`http://pbwmchallenge7.conygre.com:8080/api/customer/transaction?_customerID=${customerId}`);
+        const response = await fetch(`https://pbwmchallenge7.conygre.com:8080/api/customer/transaction?_customerID=${customerId}`);
         const data = await response.json();
         setTransactions(data);
     };

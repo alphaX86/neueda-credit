@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const CREDIT_API_BASE_URL = "http://pbwmchallenge7.conygre.com:8080/api/";
+const CREDIT_API_BASE_URL = "https://pbwmchallenge7.conygre.com:8080/api/";
 
 class CreditService {
 
