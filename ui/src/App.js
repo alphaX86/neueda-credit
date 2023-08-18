@@ -10,6 +10,7 @@ import AddTransaction from './components/AddTransaction';
 import DeleteCustomer from './components/DeleteCustomer';
 import ViewCustomer from './components/ViewCustomer';
 import Analyse from './components/Analyse';
+import ViewTransaction from './components/ViewTransaction';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                           <Route path = "/delete/customer" component = {DeleteCustomer} />
                           <Route path = "/view/customer" component = {ViewCustomer} />
                           <Route path = "/analyse" component={Analyse} />
+                          <Route path = "/view/transactions" component = {ViewTransaction} />
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent} /> */}
                     </Switch>
                 </div>
