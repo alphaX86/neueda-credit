@@ -27,6 +27,8 @@ public interface ICreditService {
     //public List<transactions> transactionByName(String _first,String _last) throws RecordNotFoundException;
 
 
+    public transactions addTransaction(int custId,double amt, String category,String merchant, String city, String state) throws RecordNotFoundException;
+
     // DELETE
     public customers deleteCustomer(int _customerID) throws RecordNotFoundException;
 }
