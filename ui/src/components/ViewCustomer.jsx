@@ -9,7 +9,7 @@ function ViewCustomer() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch('https://pbwmchallenge7.conygre.com:8080/api/allCustomers');
+            const response = await fetch('http://pbwmchallenge7.conygre.com:8080/api/allCustomers');
             const jsonData = await response.json();
             setData(jsonData);
         };

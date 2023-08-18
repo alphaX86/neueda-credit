@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-// const API_LINK = `https://pbwmchallenge7.conygre.com:8080/api/new_Customer?_first=${first}&_last=${last}&_dob=${dob}&_gender=${gender}&_job=${job}`;
+// const API_LINK = `http://pbwmchallenge7.conygre.com:8080/api/new_Customer?_first=${first}&_last=${last}&_dob=${dob}&_gender=${gender}&_job=${job}`;
 
 const AddCustomer = () => {
     const [first, setFirst] = useState('');
@@ -13,7 +13,7 @@ const AddCustomer = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const response = await fetch(`https://pbwmchallenge7.conygre.com:8080/api/newCustomer/${first}/${last}/${dob}/${gender}/${job}`, {
+        const response = await fetch(`http://pbwmchallenge7.conygre.com:8080/api/newCustomer/${first}/${last}/${dob}/${gender}/${job}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
