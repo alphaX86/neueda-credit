@@ -26,6 +26,7 @@ function App() {
                           <Route path = "/view/customer" component = {ViewCustomer} />
                           <Route path = "/analyse" component={Analyse} />
                           <Route path = "/view/transactions" component = {ViewTransaction} />
+                          
                           {/* <Route path = "/update-employee/:id" component = {UpdateEmployeeComponent} /> */}
                     </Switch>
                 </div>

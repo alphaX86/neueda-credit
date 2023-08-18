@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 const AddTransaction = () => {
-    const [customer_id, setCustomerID] = useState('');
+    const [custId, setCustomerID] = useState('');
     const [amt, setAmt] = useState('');
     const [category, setCategory] = useState('');
     const [merchant, setMerchant] = useState('');
@@ -11,16 +11,17 @@ const AddTransaction = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:8080/api/transactions/${customer_id}/${amt}/${category}/${merchant}/${city}/${state}`, {
+        const response = await fetch(`http://localhost:8080/api/transactions/${custId}/${amt}/${category}/${merchant}/${city}/${state}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ customer_id, amt, category, merchant, city, state }),
+            body: JSON.stringify({ custId, amt, category, merchant, city, state }),
         });
 
         if (response.ok) {
             alert('Transaction added successfully to your account!');
+            console.log(response);
             setCustomerID('');
             setAmt('');
             setCategory('');
@@ -29,6 +30,7 @@ const AddTransaction = () => {
             setMerchant('');
         } else {
             alert('Failed to add transaction');
+            console.log(response);
         }
     };
 
@@ -46,12 +48,12 @@ const AddTransaction = () => {
                 />
             </Form.Group>
 
-            <Form.Group controlId="customer_id">
+            <Form.Group controlId="custId">
                 <Form.Label>Customer ID</Form.Label>
                 <Form.Control
                     type="text"
-                    name="customer_id"
-                    value={customer_id}
+                    name="custId"
+                    value={custId}
                     placeholder="543"
                     required
                     onChange={(e) => setCustomerID(e.target.value)}

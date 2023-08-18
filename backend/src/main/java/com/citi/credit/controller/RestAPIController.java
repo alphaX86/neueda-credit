@@ -36,10 +36,10 @@ public class RestAPIController {
         return creditService.getAllTransactions();
     }
 
-    @GetMapping(value="/customer/transaction/{_customerID}")
-    public ResponseEntity<Object> transactionByCustID(@PathVariable String _customerID) throws RecordNotFoundException {
+    @GetMapping(value="/customer/transaction")
+    public ResponseEntity<Object> transactionByCustID(int _customerID) throws RecordNotFoundException {
         try {
-            List<transactions> list = this.creditService.transactionByCustID(Integer.parseInt(_customerID));
+            List<transactions> list = this.creditService.transactionByCustID(_customerID);
             return ResponseEntity.status(HttpStatus.FOUND).body(list);
         } catch (RecordNotFoundException e) {
             // throw new RuntimeException(e);
@@ -47,9 +47,9 @@ public class RestAPIController {
         }
     }
 
-    @GetMapping(value="/customer/{_customerID}")
-    public ResponseEntity<Object> getCustomerByID(@PathVariable String _customerID) throws RecordNotFoundException {
-        try {customers customer = this.creditService.getCustomerByID(Integer.parseInt(_customerID));
+    @GetMapping(value="/customer")
+    public ResponseEntity<Object> getCustomerByID(int _customerID) throws RecordNotFoundException {
+        try {customers customer = this.creditService.getCustomerByID(_customerID);
             return ResponseEntity.status(HttpStatus.FOUND).body(customer);
         } catch (RecordNotFoundException e) {
             // throw new RuntimeException(e);
