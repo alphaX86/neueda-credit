@@ -2,27 +2,34 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 const AddTransaction = () => {
-    const [transaction, setTransaction] = useState({
-        amt: "",
-        customer_id: "",
-        city: "",
-        state: "",
-        merchant: "",
-        category: ""
-    });
+    const [customer_id, setCustomerID] = useState('');
+    const [amt, setAmt] = useState('');
+    const [category, setCategory] = useState('');
+    const [merchant, setMerchant] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setTransaction((prevTransaction) => ({
-            ...prevTransaction,
-            [name]: value,
-        }));
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(transaction);
-        // Add your code to submit the form data to the server here
+        const response = await fetch(`http://localhost:8080/api/transactions/${customer_id}/${amt}/${category}/${merchant}/${city}/${state}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ customer_id, amt, category, merchant, city, state }),
+        });
+
+        if (response.ok) {
+            alert('Transaction added successfully to your account!');
+            setCustomerID('');
+            setAmt('');
+            setCategory('');
+            setCity('');
+            setState('');
+            setMerchant('');
+        } else {
+            alert('Failed to add transaction');
+        }
     };
 
     return (
@@ -32,10 +39,10 @@ const AddTransaction = () => {
                 <Form.Control
                     type="number"
                     name="amt"
-                    value={transaction.amt}
+                    value={amt}
                     placeholder="100"
-                    onChange={handleChange}
                     required
+                    onChange={(e) => setAmt(e.target.value)}
                 />
             </Form.Group>
 
@@ -44,10 +51,10 @@ const AddTransaction = () => {
                 <Form.Control
                     type="text"
                     name="customer_id"
-                    value={transaction.customer_id}
+                    value={customer_id}
                     placeholder="543"
-                    onChange={handleChange}
                     required
+                    onChange={(e) => setCustomerID(e.target.value)}
                 />
             </Form.Group>
 
@@ -56,10 +63,10 @@ const AddTransaction = () => {
                 <Form.Control
                     type="text"
                     name="city"
-                    value={transaction.city}
+                    value={city}
                     placeholder="New York"
-                    onChange={handleChange}
                     required
+                    onChange={(e) => setCity(e.target.value)}
                 />
             </Form.Group>
 
@@ -68,10 +75,10 @@ const AddTransaction = () => {
                 <Form.Control
                     type="text"
                     name="state"
-                    value={transaction.state}
+                    value={state}
                     placeholder="NY"
-                    onChange={handleChange}
                     required
+                    onChange={(e) => setState(e.target.value)}
                 />
             </Form.Group>
 
@@ -81,9 +88,9 @@ const AddTransaction = () => {
                     type="text"
                     name="merchant"
                     placeholder="Amazon"
-                    value={transaction.merchant}
-                    onChange={handleChange}
+                    value={merchant}
                     required
+                    onChange={(e) => setMerchant(e.target.value)}
                 />
             </Form.Group>
 
@@ -92,10 +99,10 @@ const AddTransaction = () => {
                 <Form.Control
                     type="text"
                     name="category"
-                    value={transaction.category}
+                    value={category}
                     placeholder="Shopping"
-                    onChange={handleChange}
                     required
+                    onChange={(e) => setCategory(e.target.value)}
                 />
             </Form.Group>
             <br />
@@ -103,12 +110,12 @@ const AddTransaction = () => {
                 Submit
             </Button>
             <Button className="btn-block me-2" variant="secondary" type="button" onClick={() => {
-                setTransaction({amt: "",
-                customer_id: "",
-                city: "",
-                state: "",
-                merchant: "",
-                category: ""});
+                setCustomerID('');
+                setAmt('');
+                setCategory('');
+                setMerchant('');
+                setCity('');
+                setState('');
             }}>
                 Clear Form
             </Button>

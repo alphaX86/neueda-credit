@@ -50,10 +50,12 @@ function ViewCustomer() {
         <div>
             <Form inline>
                 <Form.Control type="text" placeholder="Search" className="mr-sm-2" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                <br/>
                 <Button variant="outline-success" onClick={() => setCurrentPage(1)}>
                     Search
                 </Button>
             </Form>
+            <br/>
             <Table striped bordered hover>
                 <thead>
                     <tr>
