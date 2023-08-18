@@ -37,9 +37,9 @@ public class RestAPIController {
     }
 
     @GetMapping(value="/customer/transaction/{_customerID}")
-    public ResponseEntity<Object> transactionByCustID(@PathVariable int _customerID) throws RecordNotFoundException {
+    public ResponseEntity<Object> transactionByCustID(@PathVariable String _customerID) throws RecordNotFoundException {
         try {
-            List<transactions> list = this.creditService.transactionByCustID(_customerID);
+            List<transactions> list = this.creditService.transactionByCustID(Integer.parseInt(_customerID));
             return ResponseEntity.status(HttpStatus.FOUND).body(list);
         } catch (RecordNotFoundException e) {
             // throw new RuntimeException(e);
