@@ -36,8 +36,8 @@ public class RestAPIController {
         return creditService.getAllTransactions();
     }
 
-    @GetMapping(value="/customer/transaction")
-    public ResponseEntity<Object> transactionByCustID(int _customerID) throws RecordNotFoundException {
+    @GetMapping(value="/customer/transaction/{_customerID}")
+    public ResponseEntity<Object> transactionByCustID(@PathVariable int _customerID) throws RecordNotFoundException {
         try {
             List<transactions> list = this.creditService.transactionByCustID(_customerID);
             return ResponseEntity.status(HttpStatus.FOUND).body(list);
@@ -47,8 +47,8 @@ public class RestAPIController {
         }
     }
 
-    @GetMapping(value="/customer")
-    public ResponseEntity<Object> getCustomerByID(int _customerID) throws RecordNotFoundException {
+    @GetMapping(value="/customer/{_customerID}")
+    public ResponseEntity<Object> getCustomerByID(@PathVariable int _customerID) throws RecordNotFoundException {
         try {customers customer = this.creditService.getCustomerByID(_customerID);
             return ResponseEntity.status(HttpStatus.FOUND).body(customer);
         } catch (RecordNotFoundException e) {
@@ -64,7 +64,7 @@ public class RestAPIController {
     public ResponseEntity<Object> addCustomer(@PathVariable String _first, @PathVariable String _last, @PathVariable String _gender, @PathVariable String _job, @PathVariable String _dob) throws RecordNotFoundException{
         try {
             customers _customer = this.creditService.addCustomer(_first,_last,_gender,_job,_dob);
-            return ResponseEntity.status(HttpStatus.CREATED).body(_customer);
+            return ResponseEntity.status(HttpStatus.CREATED).body("customr added succesfully");
         } catch (RecordNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
         }
@@ -80,8 +80,8 @@ public class RestAPIController {
         }
     }
 
-    @DeleteMapping
-    public ResponseEntity<Object> deleteCustomer(int _customerID) throws RecordNotFoundException{
+    @DeleteMapping("delete/{_customerID}")
+    public ResponseEntity<Object> deleteCustomer(@PathVariable int _customerID) throws RecordNotFoundException{
         try{
             customers _customer = this.creditService.deleteCustomer(_customerID);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(_customer);

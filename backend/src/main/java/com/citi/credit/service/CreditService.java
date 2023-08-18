@@ -87,7 +87,7 @@ public class CreditService implements ICreditService{
         int transNum = rand.nextInt(1665000,9999999);
 
         transactions newTrans = new transactions(dateTime,amt,transNum,custId,city,state,merchant,category,_first,_last,_gender,_job,_dob);
-
+        transactionRepo.save(newTrans);
         return newTrans;
     }
 
