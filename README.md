@@ -1,6 +1,8 @@
 # Neueda-Credit
 
-Credit card management system
+Credit card analysis system
+
+**⚠️ The live link shows only frontend demo due to non-existent backend server ⚠️**
 
 ## Folder structure
 
@@ -13,5 +15,8 @@ The folder structure for the project is as follows:
 
 - Java
 - Spring
-- Swagger
+- Swagger UI
 - ReactJS
+- MongoDB
+- Docker
+- Maven
